@@ -1,0 +1,109 @@
+1.a. Write a program in assembly language to print the numbers from 0 to 9.
+ORG 100h              ; Origin for a COM file (starts at memory address 100h)
+
+start:
+    mov cx, 10        ; Set loop counter to 10 (for numbers 0 to 9)
+    mov al, '0'       ; ASCII value of '0' (starting character)
+
+print_digit:
+    ; Print the current digit
+    mov ah, 02h       ; DOS interrupt function to print a character
+    mov dl, al        ; Move current digit character to DL (the character to print)
+    int 21h           ; Call DOS interrupt to print character in DL
+
+    inc al            ; Move to the next character (e.g., '0' to '1', '1' to '2', etc.)
+    loop print_digit  ; Decrement CX and loop if CX is not zero
+
+    ; Print a newline
+    mov ah, 02h       ; DOS interrupt function to print a character
+    mov dl, 0Dh       ; Carriage return (to go to start of line)
+    int 21h           ; Call DOS interrupt
+    mov dl, 0Ah       ; Line feed (to go to the next line)
+    int 21h           ; Call DOS interrupt
+
+    ; Exit program
+    mov ah, 4Ch       ; DOS interrupt function to terminate program
+    int 21h           ; End program
+
+
+1.b. Write an assembly language program to print the characters from A to Z in reverse order.
+ORG 100h                ; Origin for a COM file format (used in DOS)
+
+start:
+    mov al, 'Z'         ; Start with ASCII value of 'Z'
+
+print_letter:
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, al          ; Move current character into DL (character to print)
+    int 21h             ; Call DOS interrupt to print the character in DL
+
+    dec al              ; Move to the previous letter (e.g., 'Z' to 'Y', 'Y' to 'X', etc.)
+    cmp al, 'A'         ; Check if we have reached 'A'
+    jge print_letter    ; If AL >= 'A', continue looping
+
+    ; Print a newline
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, 0Dh         ; Carriage return (to go to start of the line)
+    int 21h             ; Call DOS interrupt
+    mov dl, 0Ah         ; Line feed (to go to the next line)
+    int 21h             ; Call DOS interrupt
+
+    ; Exit program
+    mov ah, 4Ch         ; DOS function to terminate the program
+    int 21h             ; End program
+
+
+2.a.Write a program in assembly language to print the numbers from 0 to 9 in reverse order.
+ORG 100h                ; Origin for a COM file format (used in DOS)
+
+start:
+    mov al, '9'         ; Start with ASCII value of '9'
+
+print_digit:
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, al          ; Move current character into DL (character to print)
+    int 21h             ; Call DOS interrupt to print the character in DL
+
+    dec al              ; Move to the previous digit (e.g., '9' to '8', '8' to '7', etc.)
+    cmp al, '0'         ; Check if we have reached '0'
+    jge print_digit     ; If AL >= '0', continue looping
+
+    ; Print a newline
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, 0Dh         ; Carriage return (to go to start of the line)
+    int 21h             ; Call DOS interrupt
+    mov dl, 0Ah         ; Line feed (to go to the next line)
+    int 21h             ; Call DOS interrupt
+
+    ; Exit program
+    mov ah, 4Ch         ; DOS function to terminate the program
+    int 21h             ; End program
+
+
+2.b. Write an assembly language program to print the characters from A to Z.
+ORG 100h                ; Origin for a COM file format (used in DOS)
+
+start:
+    mov al, 'A'         ; Start with ASCII value of 'A'
+    mov cx, 26          ; Set loop counter to 26 (for letters A to Z)
+
+print_letter:
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, al          ; Move current letter into DL (character to print)
+    int 21h             ; Call DOS interrupt to print the character in DL
+
+    inc al              ; Move to the next letter (e.g., 'A' to 'B', 'B' to 'C', etc.)
+    loop print_letter   ; Decrement CX and loop if CX is not zero
+
+    ; Print a newline
+    mov ah, 02h         ; DOS function to print a character
+    mov dl, 0Dh         ; Carriage return (to go to start of the line)
+    int 21h             ; Call DOS interrupt
+    mov dl, 0Ah         ; Line feed (to go to the next line)
+    int 21h             ; Call DOS interrupt
+
+    ; Exit program
+    mov ah, 4Ch         ; DOS function to terminate the program
+    int 21h             ; End program
+
+
